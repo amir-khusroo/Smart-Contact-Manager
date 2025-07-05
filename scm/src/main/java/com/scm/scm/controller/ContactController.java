@@ -1,6 +1,7 @@
 package com.scm.scm.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +47,7 @@ public class ContactController {
         }
 
         @DeleteMapping("/delete/{id}")
-        public ResponseEntity<?> deleteContact(@RequestHeader("Authorization") String token, @PathVariable String id) {
+        public ResponseEntity<?> deleteContact(@RequestHeader("Authorization") String token, @PathVariable UUID id) {
             try {
                 String response = contactService.deleteContact(token, id);
                 return ResponseEntity.ok(response);
@@ -56,7 +57,7 @@ public class ContactController {
         }
 
         @PutMapping("/update/{id}")
-        public ResponseEntity<?> updateContact(@RequestBody ContactRequestDto contact, @PathVariable String id, @RequestHeader("Authorization") String token){
+        public ResponseEntity<?> updateContact(@RequestBody ContactRequestDto contact, @PathVariable UUID id, @RequestHeader("Authorization") String token){
             try {
                 String res=contactService.updateContact(contact,id,token);
                 return ResponseEntity.ok(res);

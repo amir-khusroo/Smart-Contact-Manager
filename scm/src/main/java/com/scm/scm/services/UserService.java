@@ -23,7 +23,6 @@ public class UserService {
 
     public String registerUser(UserRequestDto newUser) {
         User user = ConvertIntoUser.convertIntoUser(newUser);
-        user.setId(UUID.randomUUID().toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "User Registered successfully";

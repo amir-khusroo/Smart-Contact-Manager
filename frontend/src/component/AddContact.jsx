@@ -1,6 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 const AddContact=()=> {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,15 +23,18 @@ const AddContact=()=> {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8081/contact/add", formData,{
+    axios.post("http://localhost:8080/contact/add", formData,{
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
         }
     }).then((res) => {
-      console.log(res.data);
+      
+      toast.success("Contact added successfully");
+      navigate('/view-contacts');
     }
     ).catch((err) => {
         console.log("some error", err);
+        toast.error("Failed to add contact. Please try again.");
     }
     );
     setFormData({
@@ -37,7 +44,6 @@ const AddContact=()=> {
         description: "",
         favorite: false,
     });
-    console.log("Form Submitted", formData);
   };
 
   return (

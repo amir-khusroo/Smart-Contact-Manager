@@ -36,7 +36,6 @@ public class ContactService {
             return "Invalid User";
         }
         Contact newContact = ConvertIntoContact.convertIntoContact(contact);
-        newContact.setId(UUID.randomUUID().toString());
         newContact.setUser(user.get());
         contactRepository.save(newContact);
         return "Contact added";
@@ -53,7 +52,7 @@ public class ContactService {
 
     }
 
-    public String deleteContact(String token, String id) {
+    public String deleteContact(String token, UUID id) {
         String actualToken = token.replace("Bearer ", "");
         String username = jwtHelper.getUsernameFromToken(actualToken);
         Optional<User> user = userRepository.findByEmail(username);
@@ -71,7 +70,7 @@ public class ContactService {
         return "Contact deleted";
     }
 
-    public String updateContact(ContactRequestDto updatedContact, String id, String token) {
+    public String updateContact(ContactRequestDto updatedContact, UUID id, String token) {
         String actualToken=token.replace("Bearer ","");
         String username=jwtHelper.getUsernameFromToken(actualToken);
         Optional<User> user=userRepository.findByEmail(username);

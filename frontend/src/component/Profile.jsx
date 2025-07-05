@@ -1,21 +1,18 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 const Profile = () => {
-    useEffect(() => {
-        // Get token from localStorage
-        const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
-        // Check if token exists before making the request
+    useEffect(() => {
+        const token = localStorage.getItem("token");
         if (!token) {
-            console.error("No token found. Please log in.");
+            navigate("/login");
             return;
         }
-        console.log("Token:", token);
-
-        // Make API request with Authorization header
-        axios
-            .get("http://localhost:8081/protected", {
+        axios.get("http://localhost:8080/protected", {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true,
             })
@@ -23,14 +20,13 @@ const Profile = () => {
                 console.log("Profile Data:", res.data);
             })
             .catch((err) => {
-                console.error("Error fetching profile:", err.response?.data || err.message);
-                window.location.href = "/login";
+                navigate("/login");
             });
     }, []);
 
     return (
         <div>
-            <h1>Profile</h1>
+            <Dashboard/>
         </div>
     );
 };

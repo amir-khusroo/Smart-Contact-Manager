@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,8 +21,11 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8081/user/register', formData).then((res) => {
+    axios.post('http://localhost:8080/user/register', formData).then((res) => {
       console.log(res.data)
+      toast.success("Registration successful");
+      navigate('/login');
+
     }).catch((err) => {
       console.log(err,"invalid credentials")
     })

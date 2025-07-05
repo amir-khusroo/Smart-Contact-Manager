@@ -12,7 +12,7 @@ const ViewContact = () => {
   const [selectedContact, setSelectedContact] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8081/contact/getAll", {
+    axios.get("http://localhost:8080/contact/getAll", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
@@ -25,7 +25,7 @@ const ViewContact = () => {
     if (!window.confirm("Are you sure you want to delete this contact?")) {
       return;
     }
-    axios.delete(`http://localhost:8081/contact/delete/${id}`, {
+    axios.delete(`http://localhost:8080/contact/delete/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }

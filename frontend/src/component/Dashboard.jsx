@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import logo from '../assets/react.svg'
 
-// icons
 import { MdMenuOpen } from "react-icons/md";
 import { IoHomeOutline } from "react-icons/io5";
 import { FaProductHunt } from "react-icons/fa";
@@ -16,7 +15,7 @@ const menuItems = [
     {
         icons: <IoHomeOutline size={30} />,
         label: 'Home',
-        path: 'home'
+        path: ''
     },
     {
         icons: <i className="fa-solid fa-plus fa-2x"></i>,
@@ -31,16 +30,16 @@ const menuItems = [
     {
         icons: <IoLogoBuffer size={30} />,
         label: 'Log',
-        path: 'log'
+        path: ''
     },
     {
         icons: <TbReportSearch size={30} />,
         label: 'Report',
-        path: 'report'
+        path: ''
     }
 ]
 
-export default function Sidebar() {
+export default function Dashboard() {
 
     const [open, setOpen] = useState(true);
 
@@ -56,16 +55,14 @@ export default function Sidebar() {
 
 
     return (
-        <div className='flex'>
-            <nav className={`shadow-md h-[calc(100vh-70px)] sticky top-12  p-2 flex flex-col duration-500 bg-slate-800 text-white ${open ? 'w-60' : 'w-16'}`}>
+        <div className='flex relative'>
+            <nav className={`shadow-md h-[calc(100vh-70px)] sticky top-16 p-2 flex flex-col duration-500 bg-slate-800 text-white ${open ? 'w-60' : 'w-16'}`}>
 
-                {/* Header */}
                 <div className=' px-3 py-2 h-20 flex justify-between items-center'>
                     <img src={logo} alt="Logo" className={`${open ? 'w-10' : 'w-0'} rounded-md`} />
                     <div><MdMenuOpen size={34} className={` duration-500 cursor-pointer ${!open && ' rotate-180'}`} onClick={() => setOpen(!open)} /></div>
                 </div>
 
-                {/* Body */}
 
                 <ul className='flex-1 '>
                     {
@@ -84,7 +81,7 @@ export default function Sidebar() {
                         })
                     }
                 </ul>
-                {/* footer */}
+                
                 <div className='flex items-center gap-2 px-3 py-2'>
                     <div><FaUserCircle size={30} /></div>
                     <div className={`leading-5 ${!open && 'w-0 translate-x-24'} duration-500 overflow-hidden`}>

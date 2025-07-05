@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class check {
     @GetMapping("/protected")
     public String checkString() {
-        return "Hello World";
+        return "Valid Token";
     }
 }
