@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import ViewPericularContact from "./ViewPerticularContact";
 import EditContact from "./EditContact";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ViewContact = () => {
   const [contacts, setContacts] = useState([]);
@@ -12,7 +13,7 @@ const ViewContact = () => {
   const [selectedContact, setSelectedContact] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/contact/getAll", {
+    axios.get(`${API_URL}/contact/getAll`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }

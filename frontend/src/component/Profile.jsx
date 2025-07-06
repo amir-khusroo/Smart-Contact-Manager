@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Dashboard from "./Dashboard";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Profile = () => {
             navigate("/login");
             return;
         }
-        axios.get("http://localhost:8080/protected", {
+        axios.get(`${API_URL}/protected`, {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true,
             })

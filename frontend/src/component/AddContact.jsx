@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const AddContact=()=> {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const AddContact=()=> {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/contact/add", formData,{
+    axios.post(`${API_URL}/contact/add`, formData, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
         }

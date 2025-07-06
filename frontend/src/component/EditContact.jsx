@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 const EditContact = ({ setOpen, selectedContact, setContacts}) => {
     const [formData, setFormData] = useState({
         name: selectedContact.name,
@@ -20,7 +21,7 @@ const EditContact = ({ setOpen, selectedContact, setContacts}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8081/contact/update/${selectedContact.id}`, formData, {
+        axios.put(`${API_URL}/contact/update/${selectedContact.id}`, formData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }

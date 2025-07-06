@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8080/user/register', formData).then((res) => {
+    axios.post(`${API_URL}/user/register`, formData).then((res) => {
       console.log(res.data)
       toast.success("Registration successful");
       navigate('/login');
