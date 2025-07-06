@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")  // Apply to all endpoints
-                        .allowedOrigins("http://localhost:5173")  // Allow frontend
+                        .allowedOrigins("http://localhost:5173","https://smart-contact-manager-5zj0.onrender.com")  // Allow frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
